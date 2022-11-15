@@ -82,7 +82,7 @@ git_prompt() {
   local cb=$(git_current_branch)
   if [[ -n "$cb" ]]; then
     local repo_path=$(git_repo_path)
-    echo "git:// %{$fg_bold[green]%}$cb %{$fg[white]%}$(git_commit_id)%{$reset_color%} $(git_mode)$(git_dirty) $(git_tags_at_head)"
+    echo "git:// %{$fg_bold[green]%}branch: $cb %{$fg[white]%} $(git_commit_id)%{$reset_color%} $(git_mode)$(git_dirty) $(git_tags_at_head) tracking: $(git for-each-ref --format='%(upstream:short)' "$(git symbolic-ref -q HEAD)")"
   fi
 }
 
