@@ -66,7 +66,9 @@ git_mode() {
 git_dirty() {
   if [[ "$repo_path" != '.' && -n "$(command git ls-files -m)" ]]; then
     echo " %{$fg_bold[yellow]%}✘%{$reset_color%}"
+    return
   fi
+  echo " %{$fg_bold[green]%}✔%{$reset_color%}"
 }
 
 get_user() {
@@ -87,7 +89,7 @@ git_prompt() {
 }
 
 ## Helpful characters
-# ⚡ λ ❯ 🐄 🐮 ☺ ☹
+# ⚡ λ ✘ ✔ ❯ 🐄 🐮 ☺ ☹
 
 # Finals
 previous_result='%(?.%F{green}☺  good%f.%F{red}☹  bad %f)'
