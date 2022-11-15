@@ -65,10 +65,10 @@ git_mode() {
 
 git_dirty() {
   if [[ "$repo_path" != '.' && -n "$(command git ls-files -m)" ]]; then
-    echo " %{$fg_bold[yellow]%}✘%{$reset_color%}"
+    echo " %{$fg[yellow]%}✘%{$reset_color%}"
     return
   fi
-  echo " %{$fg_bold[green]%}✔%{$reset_color%}"
+  echo " %{$fg[green]%}✔%{$reset_color%}"
 }
 
 get_user() {
@@ -84,7 +84,7 @@ git_prompt() {
   local cb=$(git_current_branch)
   if [[ -n "$cb" ]]; then
     local repo_path=$(git_repo_path)
-    echo "git:// %{$fg_bold[green]%}branch: $cb %{$fg[white]%} $(git_commit_id)%{$reset_color%} $(git_mode)$(git_dirty) $(git_tags_at_head) tracking: $(git for-each-ref --format='%(upstream:short)' "$(git symbolic-ref -q HEAD)")"
+    echo "git:// branch %{$fg_bold[green]%}$cb  %{$reset_color%}hash %{$fg_bold[white]%}$(git_commit_id)%{$reset_color%} $(git_mode)$(git_dirty) $(git_tags_at_head) %{$reset_color%}tracking: %{$fg_bold[white]%}$(git for-each-ref --format='%(upstream:short)' "$(git symbolic-ref -q HEAD)")"
   fi
 }
 
@@ -98,7 +98,7 @@ PR_RST="%{${reset_color}%}"
 # Left prompt
 PROMPT='
 %F{$(root_warning_color)}┌──────────────────────
-%F{$(root_warning_color)}| $(root_warning)$(hostname) %F{white}$(ruby_prompt_info) %{$reset_color%}%F{white}$(date +"%Y-%m-%dT%H:%M:%SZ")%{$reset_color%}
+%F{$(root_warning_color)}| $(root_warning)%{$fg_bold[blue]%}$(hostname) %F{white}$(ruby_prompt_info) %{$reset_color%}%F{white}$(date +"%Y-%m-%dT%H:%M:%SZ")%{$reset_color%}
 %F{$(root_warning_color)}| %{$reset_color%}$(git_prompt) $(git_remote_status) %{$reset_color%}
 %F{$(root_warning_color)}└─%{$reset_color%}$previous_result ${limegreen}$(basename "$PWD")/ ❯${PR_RST} '
 
