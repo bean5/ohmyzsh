@@ -60,6 +60,14 @@ git_mode() {
     echo "+merge"
   elif [[ -e "$repo_path/rebase" || -e "$repo_path/rebase-apply" || -e "$repo_path/rebase-merge" || -e "$repo_path/../.dotest" ]]; then
     echo "+rebase"
+    return
+  fi
+
+  local tracking=$(git for-each-ref --format='%(upstream:short)' "$(git symbolic-ref -q HEAD)")
+  if [[ -n "$tracking" ]]; then
+    echo "tracking: %{$fg_bold[white]%}$tracking"
+  else
+    echo "tracking: %{$fg_bold[white]%}null"
   fi
 }
 
@@ -84,7 +92,7 @@ git_prompt() {
   local cb=$(git_current_branch)
   if [[ -n "$cb" ]]; then
     local repo_path=$(git_repo_path)
-    echo "git:// branch %{$fg_bold[green]%}$cb  %{$reset_color%}hash %{$fg_bold[white]%}$(git_commit_id)%{$reset_color%} $(git_mode)$(git_dirty) $(git_tags_at_head) %{$reset_color%}tracking: %{$fg_bold[white]%}$(git for-each-ref --format='%(upstream:short)' "$(git symbolic-ref -q HEAD)")"
+    echo "git:// branch %{$fg_bold[green]%}$cb  %{$reset_color%}hash %{$fg_bold[white]%}$(git_commit_id)%{$reset_color%} $(git_mode)$(git_dirty) $(git_tags_at_head) %{$reset_color%}"
   fi
 }
 
