@@ -96,13 +96,12 @@ PR_RST="%{${reset_color}%}"
 # Left prompt
 PROMPT='
 %F{$(root_warning_color)}┌──────────────────────
-%F{$(root_warning_color)}| %{$reset_color%}%F{white}$(date +"%Y-%m-%dT%H:%M:%SZ")%{$reset_color%}
-%F{$(root_warning_color)}| %{$reset_color%}$(root_warning)$(hostname) ${VIRTUAL_ENV:+"($VIRTUAL_ENV) "}%~ %F{white} $(ruby_prompt_info)
+%F{$(root_warning_color)}| $(root_warning)$(hostname) %F{white}$(ruby_prompt_info) %{$reset_color%}%F{white}$(date +"%Y-%m-%dT%H:%M:%SZ")%{$reset_color%}
 %F{$(root_warning_color)}| %{$reset_color%}$(git_prompt) $(git_remote_status) %{$reset_color%}
-%F{$(root_warning_color)}└─%{$reset_color%}$previous_result ${limegreen}❯${PR_RST} '
+%F{$(root_warning_color)}└─%{$reset_color%}$previous_result ${limegreen}$(basename "$PWD")/ ❯${PR_RST} '
 
 # Right prompt
-RPROMPT='%(?..%{$fg[red]%}%?%{$reset_color%}) 🐄 $(date +"%H:%M:%S") $(get_user)%F{$(root_warning_color)}%{$reset_color%}'
+RPROMPT='${VIRTUAL_ENV:+"($VIRTUAL_ENV) "}%~ %(?..%{$fg[red]%}%?%{$reset_color%}) 🐄 $(date +"%H:%M:%S") $(get_user)%F{$(root_warning_color)}%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
