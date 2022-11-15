@@ -92,7 +92,7 @@ git_prompt() {
   local cb=$(git_current_branch)
   if [[ -n "$cb" ]]; then
     local repo_path=$(git_repo_path)
-    echo "git:// branch %{$fg_bold[green]%}$cb  %{$reset_color%}hash %{$fg_bold[white]%}$(git_commit_id)%{$reset_color%} $(git_mode)$(git_dirty) $(git_tags_at_head) %{$reset_color%}"
+    echo "git:// branch %{$fg_bold[green]%}$cb  %{$reset_color%}hash %{$fg_bold[white]%}$(git_commit_id)%{$reset_color%} $(git_mode)$(git_dirty) $(git_tags_at_head) %{$reset_color%} $(git_remote_status)"
   fi
 }
 
@@ -107,7 +107,7 @@ PR_RST="%{${reset_color}%}"
 PROMPT='
 %F{$(root_warning_color)}┌──────────────────────
 %F{$(root_warning_color)}| $(root_warning)%{$fg_bold[blue]%}$(hostname) %F{white}$(ruby_prompt_info) %{$reset_color%}%F{white}$(date +"%Y-%m-%dT%H:%M:%SZ")%{$reset_color%}
-%F{$(root_warning_color)}| %{$reset_color%}$(git_prompt) $(git_remote_status) %{$reset_color%}
+%F{$(root_warning_color)}| %{$reset_color%}$(git_prompt) %{$reset_color%}
 %F{$(root_warning_color)}└─%{$reset_color%}$previous_result ${limegreen}$(basename "$PWD")/ ❯${PR_RST} '
 
 # Right prompt
