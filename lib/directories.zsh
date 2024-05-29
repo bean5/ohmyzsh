@@ -34,7 +34,8 @@ function d () {
 compdef _dirs d
 
 # List directory contents
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
+alias ls='ls --hyperlink=auto'
+alias lsa='ls -lah --hyperlink=auto'
+alias l='ls -lah --hyperlink=auto'
+alias ll='ls -lh --hyperlink=auto'
+alias la='ls -lAh --hyperlink=auto'
