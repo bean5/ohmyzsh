@@ -35,7 +35,7 @@ root_warning_color() {
     echo "red"
     return
   fi
-  echo "blue"
+  echo "white"
 }
 
 git_repo_path() {
