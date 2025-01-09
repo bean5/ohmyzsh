@@ -106,9 +106,7 @@ PR_RST="%{${reset_color}%}"
 # Left prompt
 PROMPT='
 %F{$(root_warning_color)}┌──────────────────────
-%F{$(root_warning_color)}| $(root_warning)%{$fg_bold[blue]%}$(get_user)@$(hostname)%F{white}$(ruby_prompt_info)%{$reset_color%}
-%F{$(root_warning_color)}| at    %F{white}$(date +"%Y-%m-%dT%H:%M:%SZ")%{$reset_color%}
-%F{$(root_warning_color)}|       %F{white}$(date +"%H:%M:%S")%{$reset_color%}
+%F{$(root_warning_color)}| $(root_warning)%{$fg_bold[blue]%}$(get_user)@$(hostname)%F{white}$(ruby_prompt_info)%{$reset_color%} at %F{white}$(date +"%Y-%m-%dT%H:%M:%SZ")%{$reset_color%}
 %F{$(root_warning_color)}| in    ${VIRTUAL_ENV:+"($VIRTUAL_ENV) "}%~ %(?..%{$fg[red]%}%?%{$reset_color%}) %F{$(root_warning_color)}%{$reset_color%}
 %F{$(root_warning_color)}| %{$reset_color%}$(git_prompt) %{$reset_color%}
 %F{$(root_warning_color)}└─%{$reset_color%}$previous_result ${limegreen}$(basename "$PWD")/ ❯${PR_RST} '
